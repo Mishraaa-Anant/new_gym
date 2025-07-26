@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Gym Metrics - WE 1 FITNESS STUDIO</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Fitness Calculators" name="keywords">
+    <meta content="Professional Fitness Calculators" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+       :root {
+    --primary-red: #dc2626;
+    --dark-red: #b91c1c;
+    --light-red: #ef4444;
+    --black: #000000;
+    --dark-gray: #1a1a1a;
+    --medium-gray: #2d2d2d;
+    --light-gray: #f8f9fa;
+    --white: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--white);
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+}
+
+/* Bootstrap Color Overrides */
+.bg-primary { 
+    background-color: var(--primary-red) !important; 
+}
+
+.text-primary { 
+    color: var(--primary-red) !important; 
+}
+
+.btn-primary { 
+    background-color: var(--primary-red); 
+    border-color: var(--primary-red);
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+    background-color: var(--dark-red);
+    border-color: var(--dark-red);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
+}
+
+.btn-outline-primary { 
+    color: var(--primary-red); 
+    border-color: var(--primary-red); 
+    background-color: transparent;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary:focus,
+.btn-outline-primary:active { 
+    background-color: var(--primary-red); 
+    border-color: var(--primary-red);
+    color: var(--white);
+}
+
+.badge-primary {
+    background-color: var(--primary-red);
+    color: var(--white);
+}
+
+/* Navigation */
+.nav-bar { 
+    background: linear-gradient(135deg, var(--black) 0%, var(--dark-gray) 50%, var(--primary-red) 100%);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+}
+
+.navbar-brand h1 {
+    background: linear-gradient(45deg, var(--white), var(--light-red));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.navbar-nav .nav-link {
+    color: var(--white) !important;
+    font-weight: 500;
+    padding: 0.75rem 1rem !important;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    margin: 0 0.25rem;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+    background-color: var(--primary-red);
+    color: var(--white) !important;
+    transform: translateY(-2px);
+}
+
+.dropdown-menu {
+    background-color: var(--dark-gray);
+    border: 1px solid var(--primary-red);
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.dropdown-item {
+    color: var(--white);
+    transition: all 0.3s ease;
+}
+
+.dropdown-item:hover,
+.dropdown-item.active {
+    background-color: var(--primary-red);
+    color: var(--white);
+}
+
+/* Page Header */
+.page-header { 
+    background: linear-gradient(135deg, var(--black) 0%, var(--primary-red) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.page-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    opacity: 0.3;
+}
+
+.page-header .display-4 {
+    position: relative;
+    z-index: 2;
+    text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+}
+
+/* Calculator Cards */
+.calculator-card {
+    border: none;
+    background: var(--white);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+}
+
+.calculator-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-red), var(--dark-red));
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.calculator-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(220, 38, 38, 0.2);
+}
+
+.calculator-card:hover::before {
+    transform: scaleX(1);
+}
+
+.calculator-icon {
+    font-size: 3.5rem;
+    color: var(--primary-red);
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.calculator-card:hover .calculator-icon {
+    transform: scale(1.1) rotate(10deg);
+    color: var(--dark-red);
+}
+
+.card-title {
+    color: var(--black);
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.card-text {
+    color: var(--medium-gray);
+    font-size: 0.95rem;
+}
+
+/* Passcode Modal */
+.passcode-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+}
+
+.passcode-modal {
+    background: var(--white);
+    padding: 3rem 2rem;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 450px;
+    width: 90%;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    border: 2px solid var(--primary-red);
+    position: relative;
+    overflow: hidden;
+}
+
+.passcode-modal::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, var(--primary-red), var(--dark-red));
+}
+
+.passcode-modal h4 {
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+/* Calculator Sections */
+.calculator-section {
+    display: none;
+    background: var(--white);
+    padding: 2.5rem;
+    border-radius: 20px;
+    margin-bottom: 3rem;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    border: 1px solid rgba(220, 38, 38, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.calculator-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-red), var(--dark-red));
+}
+
+.calculator-section h4 {
+    color: var(--black);
+    font-weight: 700;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--light-gray);
+}
+
+.calculator-section h4 i {
+    color: var(--primary-red);
+    margin-right: 0.75rem;
+}
+
+/* Form Controls */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    color: var(--black);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.form-control {
+    border: 2px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background-color: var(--white);
+    color: var(--black);
+}
+
+.form-control:focus {
+    border-color: var(--primary-red);
+    box-shadow: 0 0 0 0.25rem rgba(220, 38, 38, 0.15);
+    background-color: var(--white);
+    color: var(--black);
+}
+
+.form-control::placeholder {
+    color: #9ca3af;
+}
+
+/* Result Display */
+.result-display {
+    background: linear-gradient(135deg, var(--black) 0%, var(--primary-red) 100%);
+    color: var(--white);
+    padding: 2rem;
+    border-radius: 15px;
+    margin-top: 2rem;
+    font-weight: 500;
+    box-shadow: 0 10px 30px rgba(220, 38, 38, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.result-display::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+    transform: rotate(45deg);
+    animation: shine 3s infinite;
+}
+
+@keyframes shine {
+    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+    50% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+    100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+}
+
+.result-display h5 {
+    color: var(--white);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 2;
+}
+
+.result-display p,
+.result-display hr {
+    position: relative;
+    z-index: 2;
+}
+
+.result-display hr {
+    border-color: rgba(255,255,255,0.3);
+}
+
+/* Footer */
+.footer { 
+    background: linear-gradient(135deg, var(--black) 0%, var(--dark-gray) 100%);
+    color: var(--white);
+}
+
+.footer h4 {
+    color: var(--primary-red);
+    font-weight: 700;
+}
+
+.footer a {
+    color: var(--white);
+    transition: color 0.3s ease;
+}
+
+.footer a:hover {
+    color: var(--primary-red);
+    text-decoration: none;
+}
+
+.footer .btn-outline-light {
+    border-color: var(--primary-red);
+    color: var(--primary-red);
+    transition: all 0.3s ease;
+}
+
+.footer .btn-outline-light:hover {
+    background-color: var(--primary-red);
+    border-color: var(--primary-red);
+    color: var(--white);
+    transform: translateY(-2px);
+}
+
+/* Back to Top */
+.back-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    display: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--primary-red);
+    color: var(--white);
+    border: none;
+    box-shadow: 0 5px 20px rgba(220, 38, 38, 0.4);
+    transition: all 0.3s ease;
+    z-index: 999;
+}
+
+.back-to-top:hover {
+    background: var(--dark-red);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(220, 38, 38, 0.6);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .calculator-icon {
+        font-size: 3rem;
+    }
+    
+    .calculator-section {
+        padding: 2rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .navbar-brand h1 {
+        font-size: 1.8rem;
+    }
+    
+    .page-header {
+        min-height: 300px !important;
+    }
+    
+    .page-header .display-4 {
+        font-size: 2.5rem;
+    }
+    
+    .calculator-card {
+        margin-bottom: 2rem;
+    }
+    
+    .calculator-section {
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+    }
+    
+    .result-display {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar-brand h1 {
+        font-size: 1.5rem;
+    }
+    
+    .page-header {
+        min-height: 250px !important;
+        padding: 1rem 0;
+    }
+    
+    .page-header .display-4 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+    
+    .calculator-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .calculator-card {
+        margin-bottom: 1.5rem;
+    }
+    
+    .calculator-card .card-body {
+        padding: 1.5rem 1rem;
+    }
+    
+    .calculator-section {
+        padding: 1.25rem;
+        border-radius: 15px;
+    }
+    
+    .calculator-section h4 {
+        font-size: 1.25rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .passcode-modal {
+        padding: 2rem 1.5rem;
+        margin: 1rem;
+    }
+    
+    .result-display {
+        padding: 1.25rem;
+        margin-top: 1.5rem;
+    }
+    
+    .form-control {
+        padding: 0.65rem 0.85rem;
+    }
+    
+    .btn {
+        padding: 0.65rem 1.25rem;
+        font-size: 0.95rem;
+    }
+    
+    .back-to-top {
+        width: 45px;
+        height: 45px;
+        bottom: 1.5rem;
+        right: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    .navbar-brand h1 {
+        font-size: 1.25rem;
+    }
+    
+    .page-header .display-4 {
+        font-size: 1.75rem;
+    }
+    
+    .calculator-section {
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .calculator-section h4 {
+        font-size: 1.1rem;
+    }
+    
+    .passcode-modal {
+        padding: 1.5rem 1rem;
+    }
+    
+    .result-display {
+        padding: 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .form-group {
+        margin-bottom: 1.25rem;
+    }
+    
+    .calculator-card:hover {
+        transform: translateY(-5px) scale(1.01);
+    }
+    
+    .footer {
+        padding: 2rem 0 !important;
+    }
+    
+    .footer .col-lg-3 {
+        margin-bottom: 2rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .calculator-section {
+        margin-left: -0.5rem;
+        margin-right: -0.5rem;
+        border-radius: 10px;
+    }
+    
+    .calculator-card .card-body {
+        padding: 1.25rem 0.75rem;
+    }
+    
+    .passcode-modal {
+        margin: 0.5rem;
+        padding: 1.25rem 0.75rem;
+    }
+    
+    .back-to-top {
+        width: 40px;
+        height: 40px;
+        bottom: 1rem;
+        right: 1rem;
+    }
+}
+
+/* Loading Animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.calculator-card {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.calculator-card:nth-child(1) { animation-delay: 0.1s; }
+.calculator-card:nth-child(2) { animation-delay: 0.2s; }
+.calculator-card:nth-child(3) { animation-delay: 0.3s; }
+.calculator-card:nth-child(4) { animation-delay: 0.4s; }
+.calculator-card:nth-child(5) { animation-delay: 0.5s; }
+.calculator-card:nth-child(6) { animation-delay: 0.6s; }
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Focus states for accessibility */
+.calculator-card:focus,
+.btn:focus,
+.form-control:focus {
+    outline: 2px solid var(--primary-red);
+    outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .calculator-card {
+        border: 2px solid var(--black);
+    }
+    
+    .result-display {
+        border: 2px solid var(--white);
+    }
+}
+    </style>
+</head>
+
+<body class="bg-white">
+    <!-- Navbar Start -->
+    <div class="container-fluid p-0 nav-bar">
+        <nav class="navbar navbar-expand-lg bg-none navbar-dark py-3">
+            <a href="" class="navbar-brand">
+                <h1 class="m-0 display-4 font-weight-bold text-uppercase text-white">WE 1 FITNESS STUDIO</h1>
+            </a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                <div class="navbar-nav ml-auto p-4 bg-secondary">
+                    <a href="index.html" class="nav-item nav-link">Home</a>
+                    <a href="about.html" class="nav-item nav-link">About Us</a>
+                    <a href="feature.html" class="nav-item nav-link">Our Features</a>
+                    <a href="class.html" class="nav-item nav-link">Classes</a>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle active" data-toggle="dropdown">Features</a>
+                        <div class="dropdown-menu text-capitalize">
+                            <a href="blog.html" class="dropdown-item active">GymMetrics</a>
+                            <a href="single.html" class="dropdown-item">ChatBot</a>
+                        </div>
+                    </div>
+                    <a href="contact.html" class="nav-item nav-link">Contact</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!-- Navbar End -->
+
+    <!-- Page Header Start -->
+    <div class="container-fluid page-header mb-5">
+        <div class="d-flex flex-column align-items-center justify-content-center pt-0 pt-lg-5" style="min-height: 400px">
+            <h4 class="display-4 mb-3 mt-0 mt-lg-5 text-white text-uppercase font-weight-bold">Gym Metrics</h4>
+            <div class="d-inline-flex">
+                <p class="m-0 text-white"><a class="text-white" href="">Home</a></p>
+                <p class="m-0 text-white px-2">/</p>
+                <p class="m-0 text-white">Gym Metrics</p>
+            </div>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+    <!-- Passcode Overlay -->
+    <div class="passcode-overlay" id="passcodeOverlay">
+        <div class="passcode-modal">
+            <h4 class="text-primary mb-4">Enter Access Code</h4>
+            <p class="text-muted mb-4">Professional fitness calculators require authentication</p>
+            <input type="password" id="passcodeInput" class="form-control mb-3" placeholder="Enter passcode">
+            <div class="d-flex justify-content-between">
+                <button class="btn btn-outline-secondary" onclick="closePasscodeModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="verifyPasscode()">Access</button>
+            </div>
+            <div id="passcodeError" class="text-danger mt-2" style="display: none;">Invalid passcode. Please try again.</div>
+        </div>
+    </div>
+
+    <!-- Calculators Grid Start -->
+    <div class="container pt-5">
+        <div class="d-flex flex-column text-center mb-5">
+            <h4 class="text-primary font-weight-bold">Professional Tools</h4>
+            <h4 class="display-4 font-weight-bold">Fitness Calculators</h4>
+            <p class="lead">Advanced metrics for serious fitness enthusiasts</p>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="calculator-card card h-100" onclick="openCalculator('bodyFat')">
+                    <div class="card-body text-center">
+                        <div class="calculator-icon">
+                            <i class="fas fa-percentage"></i>
+                        </div>
+                        <h5 class="card-title font-weight-bold">Body Fat Calculator</h5>
+                        <p class="card-text">Calculate body fat percentage using navy method with precise measurements</p>
+                        <span class="badge badge-primary">Pro Tool</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="calculator-card card h-100" onclick="openCalculator('oneRepMax')">
+                    <div class="card-body text-center">
+                        <div class="calculator-icon">
+                            <i class="fas fa-dumbbell"></i>
+                        </div>
+                        <h5 class="card-title font-weight-bold">One Rep Max Calculator</h5>
+                        <p class="card-text">Estimate your maximum lift capacity for strength training optimization</p>
+                        <span class="badge badge-primary">Pro Tool</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="calculator-card card h-100" onclick="openCalculator('macros')">
+                    <div class="card-body text-center">
+                        <div class="calculator-icon">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <h5 class="card-title font-weight-bold">Macro Calculator</h5>
+                        <p class="card-text">Calculate optimal protein, carbs, and fat intake for your fitness goals</p>
+                        <span class="badge badge-primary">Pro Tool</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="calculator-card card h-100" onclick="openCalculator('waterIntake')">
+                    <div class="card-body text-center">
+                        <div class="calculator-icon">
+                            <i class="fas fa-tint"></i>
+                        </div>
+                        <h5 class="card-title font-weight-bold">Hydration Calculator</h5>
+                        <p class="card-text">Determine optimal daily water intake based on activity and body composition</p>
+                        <span class="badge badge-primary">Pro Tool</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="calculator-card card h-100" onclick="openCalculator('heartRate')">
+                    <div class="card-body text-center">
+                        <div class="calculator-icon">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <h5 class="card-title font-weight-bold">Heart Rate Zones</h5>
+                        <p class="card-text">Calculate optimal heart rate zones for different training intensities</p>
+                        <span class="badge badge-primary">Pro Tool</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="calculator-card card h-100" onclick="openCalculator('caloriesBurned')">
+                    <div class="card-body text-center">
+                        <div class="calculator-icon">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <h5 class="card-title font-weight-bold">Calories Burned</h5>
+                        <p class="card-text">Estimate calories burned during various exercises and activities</p>
+                        <span class="badge badge-primary">Pro Tool</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Calculator Sections -->
+    <div class="container">
+        <!-- Body Fat Calculator -->
+        <div id="bodyFatCalc" class="calculator-section">
+            <h4 class="text-primary mb-4"><i class="fas fa-percentage mr-2"></i>Body Fat Calculator (Navy Method)</h4>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="bfGender">Gender:</label>
+                        <select id="bfGender" class="form-control">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="bfHeight">Height (cm):</label>
+                        <input type="number" id="bfHeight" class="form-control" placeholder="e.g., 175">
+                    </div>
+                    <div class="form-group">
+                        <label for="bfWaist">Waist (cm):</label>
+                        <input type="number" id="bfWaist" class="form-control" placeholder="e.g., 85">
+                    </div>
+                    <div class="form-group">
+                        <label for="bfNeck">Neck (cm):</label>
+                        <input type="number" id="bfNeck" class="form-control" placeholder="e.g., 40">
+                    </div>
+                    <div class="form-group" id="hipGroup" style="display: none;">
+                        <label for="bfHip">Hip (cm):</label>
+                        <input type="number" id="bfHip" class="form-control" placeholder="e.g., 95">
+                    </div>
+                    <button class="btn btn-primary" onclick="calculateBodyFat()">Calculate Body Fat</button>
+                </div>
+                <div class="col-md-6">
+                    <div id="bodyFatResult" class="result-display" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- One Rep Max Calculator -->
+        <div id="oneRepMaxCalc" class="calculator-section">
+            <h4 class="text-primary mb-4"><i class="fas fa-dumbbell mr-2"></i>One Rep Max Calculator</h4>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="ormWeight">Weight Lifted (kg):</label>
+                        <input type="number" id="ormWeight" class="form-control" placeholder="e.g., 100">
+                    </div>
+                    <div class="form-group">
+                        <label for="ormReps">Repetitions:</label>
+                        <input type="number" id="ormReps" class="form-control" placeholder="e.g., 8" min="1" max="15">
+                    </div>
+                    <button class="btn btn-primary" onclick="calculateOneRepMax()">Calculate 1RM</button>
+                </div>
+                <div class="col-md-6">
+                    <div id="oneRepMaxResult" class="result-display" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Macro Calculator -->
+        <div id="macrosCalc" class="calculator-section">
+            <h4 class="text-primary mb-4"><i class="fas fa-chart-pie mr-2"></i>Macro Calculator</h4>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="macroWeight">Weight (kg):</label>
+                        <input type="number" id="macroWeight" class="form-control" placeholder="e.g., 70">
+                    </div>
+                    <div class="form-group">
+                        <label for="macroGoal">Fitness Goal:</label>
+                        <select id="macroGoal" class="form-control">
+                            <option value="cutting">Fat Loss (Cutting)</option>
+                            <option value="maintenance">Maintenance</option>
+                            <option value="bulking">Muscle Gain (Bulking)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="macroActivity">Activity Level:</label>
+                        <select id="macroActivity" class="form-control">
+                            <option value="sedentary">Sedentary</option>
+                            <option value="light">Light Activity</option>
+                            <option value="moderate">Moderate Activity</option>
+                            <option value="high">High Activity</option>
+                            <option value="extreme">Extreme Activity</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary" onclick="calculateMacros()">Calculate Macros</button>
+                </div>
+                <div class="col-md-6">
+                    <div id="macrosResult" class="result-display" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Water Intake Calculator -->
+        <div id="waterIntakeCalc" class="calculator-section">
+            <h4 class="text-primary mb-4"><i class="fas fa-tint mr-2"></i>Hydration Calculator</h4>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="waterWeight">Weight (kg):</label>
+                        <input type="number" id="waterWeight" class="form-control" placeholder="e.g., 70">
+                    </div>
+                    <div class="form-group">
+                        <label for="waterActivity">Exercise Duration (minutes/day):</label>
+                        <input type="number" id="waterActivity" class="form-control" placeholder="e.g., 60">
+                    </div>
+                    <div class="form-group">
+                        <label for="waterClimate">Climate:</label>
+                        <select id="waterClimate" class="form-control">
+                            <option value="normal">Normal</option>
+                            <option value="hot">Hot/Humid</option>
+                            <option value="cold">Cold</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary" onclick="calculateWaterIntake()">Calculate Water Intake</button>
+                </div>
+                <div class="col-md-6">
+                    <div id="waterResult" class="result-display" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Heart Rate Zones Calculator -->
+        <div id="heartRateCalc" class="calculator-section">
+            <h4 class="text-primary mb-4"><i class="fas fa-heartbeat mr-2"></i>Heart Rate Zones Calculator</h4>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="hrAge">Age:</label>
+                        <input type="number" id="hrAge" class="form-control" placeholder="e.g., 30">
+                    </div>
+                    <div class="form-group">
+                        <label for="hrResting">Resting Heart Rate (optional):</label>
+                        <input type="number" id="hrResting" class="form-control" placeholder="e.g., 60">
+                    </div>
+                    <button class="btn btn-primary" onclick="calculateHeartRateZones()">Calculate HR Zones</button>
+                </div>
+                <div class="col-md-6">
+                    <div id="heartRateResult" class="result-display" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Calories Burned Calculator -->
+        <div id="caloriesBurnedCalc" class="calculator-section">
+            <h4 class="text-primary mb-4"><i class="fas fa-fire mr-2"></i>Calories Burned Calculator</h4>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="cbWeight">Weight (kg):</label>
+                        <input type="number" id="cbWeight" class="form-control" placeholder="e.g., 70">
+                    </div>
+                    <div class="form-group">
+                        <label for="cbActivity">Activity:</label>
+                        <select id="cbActivity" class="form-control">
+                            <option value="3.5">Walking (3.5 mph)</option>
+                            <option value="8">Running (6 mph)</option>
+                            <option value="6">Cycling (moderate)</option>
+                            <option value="8">Weight Training</option>
+                            <option value="7">Swimming</option>
+                            <option value="10">High-Intensity Interval Training</option>
+                            <option value="4">Yoga</option>
+                            <option value="5">Dancing</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="cbDuration">Duration (minutes):</label>
+                        <input type="number" id="cbDuration" class="form-control" placeholder="e.g., 30">
+                    </div>
+                    <button class="btn btn-primary" onclick="calculateCaloriesBurned()">Calculate Calories</button>
+                </div>
+                <div class="col-md-6">
+                    <div id="caloriesResult" class="result-display" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Start -->
+    <div class="footer container-fluid mt-5 py-5 px-sm-3 px-md-5 text-white">
+        <div class="row pt-5">
+            <div class="col-lg-3 col-md-6 mb-5">
+                <h4 class="text-primary mb-4">Get In Touch</h4>
+                <p><i class="fa fa-map-marker-alt mr-2"></i>Near Muljibai Mehta School,Virar West</p>
+                <p><i class="fa fa-phone-alt mr-2"></i>+91 70281 59983</p>
+                <p><i class="fa fa-envelope mr-2"></i></p>
+                <div class="d-flex justify-content-start mt-4">
+                    <a class="btn btn-outline-light rounded-circle text-center mr-2 px-0" style="width: 40px; height: 40px;" href="#"><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-outline-light rounded-circle text-center mr-2 px-0" style="width: 40px; height: 40px;" href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-outline-light rounded-circle text-center mr-2 px-0" style="width: 40px; height: 40px;" href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a class="btn btn-outline-light rounded-circle text-center mr-2 px-0" style="width: 40px; height: 40px;" href=""><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-5">
+                <h4 class="text-primary mb-4">Quick Links</h4>
+                <div class="d-flex flex-column justify-content-start">
+                    <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Home</a>
+                    <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>About Us</a>
+                    <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Our Features</a>
+                    <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Classes</a>
+                    <a class="text-white" href="#"><i class="fa fa-angle-right mr-2"></i>Contact Us</a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-5">
+                <h4 class="text-primary mb-4">Popular Links</h4>
+                <div class="d-flex flex-column justify-content-start">
+                    <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Home</a>
+                    <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>About Us</a>
+                    <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Our Features</a>
+                    <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Classes</a>
+                    <a class="text-white" href="#"><i class="fa fa-angle-right mr-2"></i>Contact Us</a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-5">
+                <h4 class="text-primary mb-4">Opening Hours</h4>
+                <h5 class="text-white">Monday - Saturday</h5>
+                <p>5.00 AM - 11.00 PM</p>
+                <h5 class="text-white"> Sunday</h5>
+                <p>Closed!</p>
+            </div>
+        </div>
+        <div class="container border-top border-dark pt-5">
+            <p class="m-0 text-center text-white">
+                &copy; <a class="text-white font-weight-bold" href="#">We 1 fitness training studio</a>. All Rights Reserved. Designed by
+                <a class="text-white font-weight-bold" href="https://htmlcodex.com">HTML Codex</a>
+            </p>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-outline-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        let currentCalculator = '';
+        const PASSCODE = 'Weone2025';
+
+        function openCalculator(calcType) {
+            currentCalculator = calcType;
+            document.getElementById('passcodeOverlay').style.display = 'flex';
+            document.getElementById('passcodeInput').focus();
+        }
+
+        function closePasscodeModal() {
+            document.getElementById('passcodeOverlay').style.display = 'none';
+            document.getElementById('passcodeInput').value = '';
+            document.getElementById('passcodeError').style.display = 'none';
+        }
+
+        function verifyPasscode() {
+            const input = document.getElementById('passcodeInput').value;
+            if (input === PASSCODE) {
+                closePasscodeModal();
+                showCalculator(currentCalculator);
+            } else {
+                document.getElementById('passcodeError').style.display = 'block';
+            }
+        }
+
+        function showCalculator(calcType) {
+            // Hide all calculators
+            const calculators = document.querySelectorAll('.calculator-section');
+            calculators.forEach(calc => calc.style.display = 'none');
+            
+            // Show selected calculator
+            document.getElementById(calcType + 'Calc').style.display = 'block';
+            document.getElementById(calcType + 'Calc').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Gender change handler for body fat calculator
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('bfGender').addEventListener('change', function() {
+                const hipGroup = document.getElementById('hipGroup');
+                hipGroup.style.display = this.value === 'female' ? 'block' : 'none';
+            });
+
+            // Enter key handler for passcode
+            document.getElementById('passcodeInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    verifyPasscode();
+                }
+            });
+        });
+
+        function calculateBodyFat() {
+            const gender = document.getElementById('bfGender').value;
+            const height = parseFloat(document.getElementById('bfHeight').value);
+            const waist = parseFloat(document.getElementById('bfWaist').value);
+            const neck = parseFloat(document.getElementById('bfNeck').value);
+            const hip = parseFloat(document.getElementById('bfHip').value) || 0;
+
+            if (!height || !waist || !neck) {
+                alert('Please fill all required fields');
+                return;
+            }
+
+            let bodyFat;
+            if (gender === 'male') {
+                bodyFat = 495 / (1.0324 - 0.19077 * Math.log10(waist - neck) + 0.15456 * Math.log10(height)) - 450;
+            } else {
+                if (!hip) {
+                    alert('Hip measurement is required for females');
+                    return;
+                }
+                bodyFat = 495 / (1.29579 - 0.35004 * Math.log10(waist + hip - neck) + 0.22100 * Math.log10(height)) - 450;
+            }
+
+            let category;
+            if (gender === 'male') {
+                if (bodyFat < 6) category = 'Essential Fat';
+                else if (bodyFat < 14) category = 'Athletes';
+                else if (bodyFat < 18) category = 'Fitness';
+                else if (bodyFat < 25) category = 'Average';
+                else category = 'Obese';
+            } else {
+                if (bodyFat < 14) category = 'Essential Fat';
+                else if (bodyFat < 21) category = 'Athletes';
+                else if (bodyFat < 25) category = 'Fitness';
+                else if (bodyFat < 32) category = 'Average';
+                else category = 'Obese';
+            }
+
+            document.getElementById('bodyFatResult').innerHTML = `
+                <h5>Body Fat Results</h5>
+                <p><strong>Body Fat Percentage:</strong> ${bodyFat.toFixed(1)}%</p>
+                <p><strong>Category:</strong> ${category}</p>
+                <p><strong>Method:</strong> U.S. Navy Formula</p>
+            `;
+            document.getElementById('bodyFatResult').style.display = 'block';
+        }
+
+        function calculateOneRepMax() {
+            const weight = parseFloat(document.getElementById('ormWeight').value);
+            const reps = parseInt(document.getElementById('ormReps').value);
+
+            if (!weight || !reps || reps < 1 || reps > 15) {
+                alert('Please enter valid weight and repetitions (1-15)');
+                return;
+            }
+
+            // Using Brzycki formula: 1RM = weight / (1.0278 - 0.0278 × reps)
+            const oneRepMax = weight / (1.0278 - 0.0278 * reps);
+            
+            // Calculate percentage ranges for training
+            const percentages = {
+                '90-100%': Math.round(oneRepMax * 0.95),
+                '80-90%': Math.round(oneRepMax * 0.85),
+                '70-80%': Math.round(oneRepMax * 0.75),
+                '60-70%': Math.round(oneRepMax * 0.65),
+                '50-60%': Math.round(oneRepMax * 0.55)
+            };
+
+            document.getElementById('oneRepMaxResult').innerHTML = `
+                <h5>One Rep Max Results</h5>
+                <p><strong>Estimated 1RM:</strong> ${Math.round(oneRepMax)} kg</p>
+                <hr>
+                <h6>Training Zones:</h6>
+                <p><strong>Max Effort (90-100%):</strong> ${percentages['90-100%']} kg</p>
+                <p><strong>Strength (80-90%):</strong> ${percentages['80-90%']} kg</p>
+                <p><strong>Power (70-80%):</strong> ${percentages['70-80%']} kg</p>
+                <p><strong>Hypertrophy (60-70%):</strong> ${percentages['60-70%']} kg</p>
+                <p><strong>Endurance (50-60%):</strong> ${percentages['50-60%']} kg</p>
+            `;
+            document.getElementById('oneRepMaxResult').style.display = 'block';
+        }
+
+        function calculateMacros() {
+            const weight = parseFloat(document.getElementById('macroWeight').value);
+            const goal = document.getElementById('macroGoal').value;
+            const activity = document.getElementById('macroActivity').value;
+
+            if (!weight) {
+                alert('Please enter your weight');
+                return;
+            }
+
+            // Activity multipliers
+            const activityMultipliers = {
+                sedentary: 1.2,
+                light: 1.375,
+                moderate: 1.55,
+                high: 1.725,
+                extreme: 1.9
+            };
+
+            // Base metabolic rate (simplified formula)
+            const bmr = 10 * weight + 6.25 * 170 - 5 * 30 + 5; // Assuming average height and age
+            const tdee = bmr * activityMultipliers[activity];
+
+            let calories, protein, carbs, fat;
+            
+            switch(goal) {
+                case 'cutting':
+                    calories = Math.round(tdee * 0.8);
+                    protein = Math.round(weight * 2.5);
+                    fat = Math.round(weight * 0.8);
+                    carbs = Math.round((calories - (protein * 4) - (fat * 9)) / 4);
+                    break;
+                case 'maintenance':
+                    calories = Math.round(tdee);
+                    protein = Math.round(weight * 2);
+                    fat = Math.round(weight * 1);
+                    carbs = Math.round((calories - (protein * 4) - (fat * 9)) / 4);
+                    break;
+                case 'bulking':
+                    calories = Math.round(tdee * 1.15);
+                    protein = Math.round(weight * 2.2);
+                    fat = Math.round(weight * 1.2);
+                    carbs = Math.round((calories - (protein * 4) - (fat * 9)) / 4);
+                    break;
+            }
+
+            document.getElementById('macrosResult').innerHTML = `
+                <h5>Macro Distribution</h5>
+                <p><strong>Daily Calories:</strong> ${calories}</p>
+                <hr>
+                <p><strong>Protein:</strong> ${protein}g (${Math.round((protein * 4 / calories) * 100)}%)</p>
+                <p><strong>Carbohydrates:</strong> ${carbs}g (${Math.round((carbs * 4 / calories) * 100)}%)</p>
+                <p><strong>Fat:</strong> ${fat}g (${Math.round((fat * 9 / calories) * 100)}%)</p>
+                <hr>
+                <p><strong>Goal:</strong> ${goal.charAt(0).toUpperCase() + goal.slice(1)}</p>
+            `;
+            document.getElementById('macrosResult').style.display = 'block';
+        }
+
+        function calculateWaterIntake() {
+            const weight = parseFloat(document.getElementById('waterWeight').value);
+            const activity = parseFloat(document.getElementById('waterActivity').value) || 0;
+            const climate = document.getElementById('waterClimate').value;
+
+            if (!weight) {
+                alert('Please enter your weight');
+                return;
+            }
+
+            // Base water intake: 35ml per kg of body weight
+            let waterIntake = weight * 35;
+
+            // Add for exercise: 500-750ml per hour of exercise
+            waterIntake += (activity / 60) * 625;
+
+            // Climate adjustments
+            const climateMultipliers = {
+                normal: 1,
+                hot: 1.2,
+                cold: 0.9
+            };
+
+            waterIntake *= climateMultipliers[climate];
+
+            const liters = (waterIntake / 1000).toFixed(1);
+            const glasses = Math.round(waterIntake / 250); // 250ml per glass
+
+            document.getElementById('waterResult').innerHTML = `
+                <h5>Daily Water Intake</h5>
+                <p><strong>Recommended:</strong> ${Math.round(waterIntake)}ml</p>
+                <p><strong>Equivalent:</strong> ${liters} liters</p>
+                <p><strong>Glasses (250ml):</strong> ${glasses} glasses</p>
+                <hr>
+                <p><strong>Tips:</strong></p>
+                <p>• Drink consistently throughout the day</p>
+                <p>• Increase intake during hot weather</p>
+                <p>• Monitor urine color for hydration status</p>
+            `;
+            document.getElementById('waterResult').style.display = 'block';
+        }
+
+        function calculateHeartRateZones() {
+            const age = parseInt(document.getElementById('hrAge').value);
+            const resting = parseInt(document.getElementById('hrResting').value) || 60;
+
+            if (!age || age < 15 || age > 100) {
+                alert('Please enter a valid age (15-100)');
+                return;
+            }
+
+            const maxHR = 220 - age;
+            const hrReserve = maxHR - resting;
+
+            // Heart rate zones using Karvonen method
+            const zones = {
+                'Zone 1 (Recovery)': {
+                    lower: Math.round(resting + hrReserve * 0.5),
+                    upper: Math.round(resting + hrReserve * 0.6),
+                    description: 'Active recovery, warm-up'
+                },
+                'Zone 2 (Aerobic Base)': {
+                    lower: Math.round(resting + hrReserve * 0.6),
+                    upper: Math.round(resting + hrReserve * 0.7),
+                    description: 'Fat burning, endurance'
+                },
+                'Zone 3 (Aerobic)': {
+                    lower: Math.round(resting + hrReserve * 0.7),
+                    upper: Math.round(resting + hrReserve * 0.8),
+                    description: 'Aerobic fitness'
+                },
+                'Zone 4 (Threshold)': {
+                    lower: Math.round(resting + hrReserve * 0.8),
+                    upper: Math.round(resting + hrReserve * 0.9),
+                    description: 'Lactate threshold'
+                },
+                'Zone 5 (Neuromuscular)': {
+                    lower: Math.round(resting + hrReserve * 0.9),
+                    upper: maxHR,
+                    description: 'Max effort, anaerobic'
+                }
+            };
+
+            let resultHTML = `
+                <h5>Heart Rate Zones</h5>
+                <p><strong>Max HR:</strong> ${maxHR} bpm</p>
+                <p><strong>Resting HR:</strong> ${resting} bpm</p>
+                <hr>
+            `;
+
+            Object.entries(zones).forEach(([zone, data]) => {
+                resultHTML += `
+                    <p><strong>${zone}:</strong> ${data.lower}-${data.upper} bpm<br>
+                    <small>${data.description}</small></p>
+                `;
+            });
+
+            document.getElementById('heartRateResult').innerHTML = resultHTML;
+            document.getElementById('heartRateResult').style.display = 'block';
+        }
+
+        function calculateCaloriesBurned() {
+            const weight = parseFloat(document.getElementById('cbWeight').value);
+            const metValue = parseFloat(document.getElementById('cbActivity').value);
+            const duration = parseInt(document.getElementById('cbDuration').value);
+
+            if (!weight || !duration) {
+                alert('Please enter weight and duration');
+                return;
+            }
+
+            // Calories burned = MET × weight (kg) × time (hours)
+            const caloriesBurned = Math.round(metValue * weight * (duration / 60));
+            
+            // Calculate calories per minute
+            const caloriesPerMinute = (caloriesBurned / duration).toFixed(1);
+
+            // Get activity name
+            const activitySelect = document.getElementById('cbActivity');
+            const activityName = activitySelect.options[activitySelect.selectedIndex].text;
+
+            document.getElementById('caloriesResult').innerHTML = `
+                <h5>Calories Burned</h5>
+                <p><strong>Activity:</strong> ${activityName}</p>
+                <p><strong>Duration:</strong> ${duration} minutes</p>
+                <p><strong>Total Calories:</strong> ${caloriesBurned} cal</p>
+                <p><strong>Rate:</strong> ${caloriesPerMinute} cal/min</p>
+                <hr>
+                <p><strong>Equivalent to:</strong></p>
+                <p>• ${Math.round(caloriesBurned / 155)} minutes of walking</p>
+                <p>• ${Math.round(caloriesBurned / 7)} minutes of running</p>
+            `;
+            document.getElementById('caloriesResult').style.display = 'block';
+        }
+
+        // Back to top functionality
+        $(document).ready(function() {
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 100) {
+                    $('.back-to-top').fadeIn('slow');
+                } else {
+                    $('.back-to-top').fadeOut('slow');
+                }
+            });
+            
+            $('.back-to-top').click(function() {
+                $('html, body').animate({scrollTop: 0}, 1500, 'easeInOutExpo');
+                return false;
+            });
+        });
+    </script>
+</body>
+</html>
